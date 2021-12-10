@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { renderPastPoll } from "./render-utils.js";
+import { renderPastPoll } from './render-utils.js';
 
 const optionForm = document.querySelector('#option-form');
 
@@ -24,8 +24,8 @@ const pastPollsEl = document.querySelector('#display-past-polls');
 
 // let state
 let question = '';
-let voteA = '';
-let voteB = '';
+let voteA = 0;
+let voteB = 0;
 let optionA = '';
 let optionB = '';
 
@@ -40,9 +40,9 @@ optionForm.addEventListener('submit', (e) => {
 
     const formData = new FormData(optionForm);
 
-    question = formData.get('question');
-    optionA = formData.get('optionA');
-    optionB = formData.get('optionB');
+    question = formData.get('question-form');
+    optionA = formData.get('option-a');
+    optionB = formData.get('option-b');
 
     displayCurrentPoll();
     optionForm.reset();
@@ -50,27 +50,27 @@ optionForm.addEventListener('submit', (e) => {
 });
 
 optionAAddButton.addEventListener('click', () => {
-    optionA++;
+    voteA++;
 
-    optionAVotesEl.textContent = optionA;
+    optionAVotesEl.textContent = voteA;
 });
 
 optionBAddButton.addEventListener('click', () => {
-    optionB++;
+    voteB++;
 
-    optionBVotesEl.textContent = optionB;
+    optionBVotesEl.textContent = voteB;
 });
 
 optionAUndoButton.addEventListener('click', () => {
-    optionA--;
+    voteA--;
 
-    optionAVotesEl.textContent = optionA;
+    optionAVotesEl.textContent = voteA;
 });
 
 optionBUndoButton.addEventListener('click', () => {
-    optionB--;
+    voteB--;
 
-    optionBVotesEl.textContent = optionB;
+    optionBVotesEl.textContent = voteB;
 });
 
 closePollEl.addEventListener('click', () => {

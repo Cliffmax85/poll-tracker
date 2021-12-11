@@ -21,9 +21,10 @@ export function renderPastPoll(pastPoll) {
     pVotesA.textContent = pastPoll.voteA;
     pVotesB.textContent = pastPoll.voteB;
 
-  
+    
     container.append(pQuestionEl, pTitleA, pTitleB, pVotesA, pVotesB);
 
     // return the DOM element
     return container;
 }
+

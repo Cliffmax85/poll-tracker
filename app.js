@@ -9,7 +9,7 @@ const optionAUndoButton = document.querySelector('#undo-option-a');
 const optionBUndoButton = document.querySelector('#undo-option-b');
 
 
-const optionAVotesEl = document.querySelector('#option-b-count');
+const optionAVotesEl = document.querySelector('#option-a-count');
 const optionBVotesEl = document.querySelector('#option-b-count');
 const optionATitleAEl = document.querySelector('#option-a-title');
 const optionBTitleEl = document.querySelector('#option-b-title');
@@ -35,12 +35,12 @@ let pastPollsArray = [];
 // set event listeners 
 
 optionForm.addEventListener('submit', (e) => {
-    e.prevenDefault();
+    e.preventDefault();
 
 
     const formData = new FormData(optionForm);
 
-    question = formData.get('question-form');
+    question = formData.get('question');
     optionA = formData.get('option-a');
     optionB = formData.get('option-b');
 
@@ -74,6 +74,7 @@ optionBUndoButton.addEventListener('click', () => {
 });
 
 closePollEl.addEventListener('click', () => {
+    optionForm.reset();
     const poll = makePoll();
     pastPollsArray.push(poll);
     displayAllPolls();

@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-import { renderPastPoll } from "./render-utils.js";
+import { renderPastPoll } from './render-utils.js';
 
 const optionForm = document.querySelector('#option-form');
 
@@ -9,7 +9,7 @@ const optionAUndoButton = document.querySelector('#undo-option-a');
 const optionBUndoButton = document.querySelector('#undo-option-b');
 
 
-const optionAVotesEl = document.querySelector('#option-b-count');
+const optionAVotesEl = document.querySelector('#option-a-count');
 const optionBVotesEl = document.querySelector('#option-b-count');
 const optionATitleAEl = document.querySelector('#option-a-title');
 const optionBTitleEl = document.querySelector('#option-b-title');
@@ -24,8 +24,8 @@ const pastPollsEl = document.querySelector('#display-past-polls');
 
 // let state
 let question = '';
-let voteA = '';
-let voteB = '';
+let voteA = 0;
+let voteB = 0;
 let optionA = '';
 let optionB = '';
 
@@ -35,14 +35,14 @@ let pastPollsArray = [];
 // set event listeners 
 
 optionForm.addEventListener('submit', (e) => {
-    e.prevenDefault();
+    e.preventDefault();
 
 
     const formData = new FormData(optionForm);
 
     question = formData.get('question');
-    optionA = formData.get('optionA');
-    optionB = formData.get('optionB');
+    optionA = formData.get('option-a');
+    optionB = formData.get('option-b');
 
     displayCurrentPoll();
     optionForm.reset();
@@ -50,30 +50,31 @@ optionForm.addEventListener('submit', (e) => {
 });
 
 optionAAddButton.addEventListener('click', () => {
-    optionA++;
+    voteA++;
 
-    optionAVotesEl.textContent = optionA;
+    optionAVotesEl.textContent = voteA;
 });
 
 optionBAddButton.addEventListener('click', () => {
-    optionB++;
+    voteB++;
 
-    optionBVotesEl.textContent = optionB;
+    optionBVotesEl.textContent = voteB;
 });
 
 optionAUndoButton.addEventListener('click', () => {
-    optionA--;
+    voteA--;
 
-    optionAVotesEl.textContent = optionA;
+    optionAVotesEl.textContent = voteA;
 });
 
 optionBUndoButton.addEventListener('click', () => {
-    optionB--;
+    voteB--;
 
-    optionBVotesEl.textContent = optionB;
+    optionBVotesEl.textContent = voteB;
 });
 
 closePollEl.addEventListener('click', () => {
+    optionForm.reset();
     const poll = makePoll();
     pastPollsArray.push(poll);
     displayAllPolls();

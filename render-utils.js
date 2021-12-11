@@ -18,12 +18,13 @@ export function renderPastPoll(pastPoll) {
     pQuestionEl.textContent = pastPoll.question;
     pTitleA.textContent = pastPoll.optionA;
     pTitleB.textContent = pastPoll.optionB;
-    pVotesA.textContent = pastPoll.VotesA;
-    pVotesB.textContent = pastPoll.VotesB;
+    pVotesA.textContent = pastPoll.voteA;
+    pVotesB.textContent = pastPoll.voteB;
 
-  
+    
     container.append(pQuestionEl, pTitleA, pTitleB, pVotesA, pVotesB);
 
     // return the DOM element
     return container;
 }
+
